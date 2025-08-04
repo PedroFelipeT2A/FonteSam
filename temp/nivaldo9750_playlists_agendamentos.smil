@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil title="nivaldo9750">
+<head></head>
+<body>
+<stream name="nivaldo9750"></stream>
+
+<playlist name="001_igreja" playOnStream="nivaldo9750" repeat="true" scheduled="2020-03-30 01:30:51">
+<video length="-1" src="mp4:Aqui_como_no_ceu_Here_As_In_Heaven__Rafael_Bicudo__DROPS.mp4" start="0"></video>
+<video length="-1" src="mp4:Midian_Lima_-_Nao_Pare_Clipe_Oficial_MK_Music.mp4" start="0"></video>
+<video length="-1" src="mp4:LUGAR_SECRETO__CLIPE_OFICIAL__EP_CEU__GABRIELA_ROCHA.mp4" start="0"></video>
+<video length="-1" src="mp4:Vento_Impetuoso_-_Casa_Worship_Clipe_Oficial.mp4" start="0"></video>
+<video length="-1" src="mp4:BE_ONE_MUSIC__Cercado_De_Gloria_Live.mp4" start="0"></video>
+<video length="-1" src="mp4:PARA_QUE_ENTRE_O_REI__MORADA.mp4" start="0"></video>
+<video length="-1" src="mp4:Michelle_Nascimento_-_A_Quem_Enviarei.mp4" start="0"></video>
+<video length="-1" src="mp4:So_Tu_Es_Santo__Morada.mp4" start="0"></video>
+<video length="-1" src="mp4:Maranata___Alessandro_Vilas_Boas.mp4" start="0"></video>
+<video length="-1" src="mp4:Grande_e_o_Senhor_Ao_Vivo.mp4" start="0"></video>
+<video length="-1" src="mp4:Julia_Vitoria_feat._Gabriela_Rocha_-_Tuas_Aguas_Live_Session.mp4" start="0"></video>
+<video length="-1" src="mp4:Sarah_Farias_-_Se_Renovarao.mp4" start="0"></video>
+<video length="-1" src="mp4:LIVRES__Juliano_Son_-_Espero_por_Ti_Clipe_Oficial_Feat._Ana_Rock.mp4" start="0"></video>
+<video length="-1" src="mp4:Para_Onde_Eu_Irei_-_Morada_-_Live_Church.mp4" start="0"></video>
+<video length="-1" src="mp4:Gloria_e_Honra_-_Nivea_Soares_CD_GLORIA_E_HONRA_EXCLUSIVO.mp4" start="0"></video>
+<video length="-1" src="mp4:Sarah_Farias_-_Coisas_Maiores_Clipe_Oficial_MK_Music.mp4" start="0"></video>
+<video length="-1" src="mp4:Sarah_Farias_-_E_Diferente_Live_Session.mp4" start="0"></video>
+<video length="-1" src="mp4:Era_Eu_-_Casa_Worship_Clipe_Oficial.mp4" start="0"></video>
+<video length="-1" src="mp4:Gabriel_Guedes_-_Eterno_Presente_Ao_Vivo.mp4" start="0"></video>
+<video length="-1" src="mp4:Sarah_Farias_-_Sobrevivi_Clipe_Oficial_MK_Music.mp4" start="0"></video>
+<video length="-1" src="mp4:Gabriel_Guedes_-_Vitorioso_Es_Clipe_Oficial.mp4" start="0"></video>
+<video length="-1" src="mp4:SARAH_FARIAS_-_DEIXA_EU_TE_USAR_-_CLIPE_OFICIAL.mp4" start="0"></video>
+<video length="-1" src="mp4:3_Horas_de_Louvor_com_Gabriel_Guedes.mp4" start="0"></video>
+<video length="-1" src="mp4:Juliano_Son__Eu_vou_Construir__Noite_de_Adoracao_em_Sao_Paulo.mp4" start="0"></video>
+<video length="-1" src="mp4:Tudo_A_Ver_Com_Ele_Ao_Vivo__Central_3_feat._Andre_Aquino.mp4" start="0"></video>
+</playlist>
+
+</body>
+</smil>

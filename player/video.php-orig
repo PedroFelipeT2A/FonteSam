@@ -1,0 +1,256 @@
+<?php
+$login = query_string('1');
+$player = query_string('2');
+$servidor = code_decode(query_string('5'),"D");
+$aspectratio = query_string('6');
+$capa_vodthumb = code_decode(query_string('7'),"D");
+$vod = code_decode(query_string('8'),"D");
+$ativar_contador = (query_string('8') == "sim") ? "sim" : "nao";
+$ativar_compartilhamento = (query_string('9') == "sim") ? "sim" : "nao";
+
+$verifica_stm = mysqli_num_rows(mysqli_query($conexao,"SELECT * FROM streamings where login = '".$login."'"));
+
+if($verifica_stm == 0) {
+  die ("Error! Missing data.");
+}
+
+$dados_config = mysqli_fetch_array(mysqli_query($conexao,"SELECT * FROM configuracoes"));
+$dados_stm = mysqli_fetch_array(mysqli_query($conexao,"SELECT * FROM streamings where login = '".$login."'"));
+$dados_servidor = @mysqli_fetch_array(@mysqli_query($conexao,"SELECT * FROM servidores where codigo = '".$dados_stm["codigo_servidor"]."'"));
+
+if($dados_servidor["nome_principal"]) {
+$servidor = $dados_servidor["nome_principal"].".".$dados_config["dominio_padrao"];
+} else {
+$servidor = $dados_servidor["nome"].".".$dados_config["dominio_padrao"];
+}
+
+if(!empty($vod)) {
+  $url_source = "https://".$servidor."/".$login."/".$login."/mp4:".$vod."/playlist.m3u8";
+} elseif($dados_stm["transcoder_instalado"] == "sim") {
+  $url_source = "https://".$servidor."/".$login."/smil:transcoder.smil/playlist.m3u8";
+  $player = "2";
+} else {
+  $url_source = "https://".$servidor."/".$login."/".$login."/playlist.m3u8";
+}
+
+// Verifica se streaming esta funcionando, se nao estiver exibe aviso de sem sinal
+$file_headers = @get_headers($url_source);
+if($file_headers[0] == 'HTTP/1.0 404 Not Found') {
+die('<!DOCTYPE HTML><html><head><title>Sem sinal | No signal</title><style>body {background-image:url("/img/nosignal.gif");background-repeat: no-repeat;background-size: 100% 100%;}html {height: 100%}</style></head><body><script>setTimeout(function() { location.reload(); }, 60000);</script></body></html>');
+}
+
+switch ($dados_stm['watermark_posicao']) {
+  case 'left,top':
+  $ypos = '0';
+  $xpos = '0';
+  $clappr_watermark ='top-left';
+  break;
+  case 'right,top':
+  $ypos = '0';
+  $xpos = '100';
+  $clappr_watermark ='top-right';
+  break;
+  case 'left,bottom':
+  $ypos = '100';
+  $xpos = '0';
+  $clappr_watermark ='bottom-left';
+  break;
+  case 'right,bottom':
+  $ypos = '100';
+  $xpos = '100';
+  $clappr_watermark ='bottom-right';
+  break; 
+  default:
+  $ypos = '0';
+  $xpos = '0';
+  $clappr_watermark ='bottom-right';
+  break;
+}
+?>
+
+<?php if($player == 1) { ?>
+<?php $autoplay = (query_string('3') == "true") ? "autoplay" : "";  ?>
+<?php $mudo = (query_string('4') == "true") ? "muted" : "";  ?>
+<?php $loop = (query_string('9') == "true") ? "loop" : "";  ?>
+<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <title>Player</title>
+      <meta name=apple-touch-fullscreen content=yes>
+<meta name=apple-mobile-web-app-capable content=yes>
+<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+<link href="//vjs.zencdn.net/7.8.4/video-js.css" rel="stylesheet">
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="//cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<style>*{margin:0;}html,body{height:100%; background-color:#000000;overflow-x: hidden!important;}.video-js .vjs-time-control{display: none;}.video-js .vjs-progress-control{display: none;}.icone-contador{position:absolute;left:0;top:0;background:rgba(255,0,0, 1.0); min-width: 50px;height: 20px;padding-left: 5px;padding-bottom: 10px; margin: 10px; border-radius: 3px;color: #FFFFFF;font-size: 14px;text-align: center;z-index: 10000;}.overlay{z-index:1;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAMAAABFaP0WAAAABlBMVEX///8AAABVwtN+AAAAAXRSTlMAQObYZgAAAAxJREFUCNdjYGQAAgAACwAC91XSmQAAAABJRU5ErkJggg==);background-repeat:repeat}ul{margin:0;padding:0}ul li{list-style-type:none}.circle-nav-wrapper{position:absolute;z-index:9999;right:0;top:0;width:50px;height:50pxoverflow:hidden}.circle-nav-wrapper .circle-nav-toggle{position:absolute;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;border-radius:50%;z-index:999999;width:30px;height:30px;border:2px solid #FFFFFF;transition:-webkit-transform .2s cubic-bezier(0,1.16,1,1);transition:transform .2s cubic-bezier(0,1.16,1,1);transition:transform .2s cubic-bezier(0,1.16,1,1),-webkit-transform .2s cubic-bezier(0,1.16,1,1);right:10px;top:10px}.circle-nav-wrapper .circle-nav-toggle i.material-icons{color:#FFFFFF}.circle-nav-wrapper .circle-nav-toggle:focus,.circle-nav-wrapper .circle-nav-toggle:hover{opacity:.8;cursor:pointer}.circle-nav-wrapper .circle-nav-toggle.circle-nav-open{border:2px solid #fff;-webkit-transform:rotate(135deg);transform:rotate(135deg)}.circle-nav-wrapper .circle-nav-toggle.circle-nav-open i.material-icons{color:#fff}.circle-nav-wrapper .circle-nav-panel{background:#ffc371;background:linear-gradient(to right,#ff5f6d,#ffc371);width:0;height:0;border-radius:50%;-webkit-transform:translate(-50%,-52.5%);transform:translate(-50%,-52.5%);transition:width .2s cubic-bezier(0,1.16,1,1),height .2s cubic-bezier(0,1.16,1,1);margin-left:261px}.circle-nav-wrapper .circle-nav-panel.circle-nav-open{width:500px;height:500px;opacity:.7;box-shadow:-5px 6px 0 6px rgba(255,95,109,.33)}.circle-nav-wrapper .circle-nav-menu{width:250px;height:250px}.circle-nav-wrapper .circle-nav-menu .circle-nav-item{position:absolute;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#fff;border-radius:50%;width:15px;height:15px;visibility:hidden;transition:bottom .5s cubic-bezier(0,1.16,1,1),left .5s cubic-bezier(0,1.16,1,1),width .3s cubic-bezier(0,1.16,1,1),height .3s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu .circle-nav-item-1,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-2,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-3,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-4,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-5{left:250px;bottom:250px}.circle-nav-wrapper .circle-nav-menu .circle-nav-item i{color:#ff5f6d;font-size:.6em;transition:font .3s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu .circle-nav-item i{display:block}.circle-nav-wrapper .circle-nav-menu .circle-nav-item span{display:none}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item{width:40px;height:40px;visibility:visible;transition:bottom .3s cubic-bezier(0,1.16,1,1),left .3s cubic-bezier(0,1.16,1,1),width .2s cubic-bezier(0,1.16,1,1),height .2s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item:focus,.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item:hover{cursor:pointer;opacity:.8}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item i{font-size:1.4em;transition:font .1s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-1{bottom:200px;left:30px;transition-delay:.2s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-2{bottom:140px;left:50px;transition-delay:.4s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-3{bottom:90px;left:85px;transition-delay:.6s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-4{bottom:52px;left:132px;transition-delay:.8s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-5{bottom:28px;left:187px;transition-delay:1s}.video-js{height:100%!important}.video-js .vjs-time-control{display:none}.video-js .vjs-progress-control{display:none}.video-js .vjs-menu-button-inline.vjs-slider-active,.video-js .vjs-menu-button-inline:focus,.video-js .vjs-menu-button-inline:hover,.video-js.vjs-no-flex .vjs-menu-button-inline{width:10em}.video-js .vjs-controls-disabled .vjs-big-play-button{display:none!important}.video-js .vjs-control{width:3em}.video-js .vjs-menu-button-inline:before{width:1.5em}.vjs-menu-button-inline .vjs-menu{left:3em}.video-js.vjs-ended .vjs-big-play-button,.video-js.vjs-paused .vjs-big-play-button,.vjs-paused.vjs-has-started.video-js .vjs-big-play-button{display:block}.video-js .vjs-load-progress div,.vjs-seeking .vjs-big-play-button,.vjs-waiting .vjs-big-play-button{display:none!important}.video-js .vjs-mouse-display:after,.video-js .vjs-play-progress:after{padding:0 .4em .3em}.video-js.vjs-ended .vjs-loading-spinner{display:none}.video-js.vjs-ended .vjs-big-play-button{display:block!important}.video-js.vjs-paused .vjs-big-play-button,.vjs-paused.vjs-has-started.video-js .vjs-big-play-button,video-js.vjs-ended .vjs-big-play-button{display:block}.video-js .vjs-big-play-button{top:50%;left:50%;margin-left:-1.5em;margin-top:-1em}.video-js .vjs-big-play-button{background-color:rgba(14,34,61,.7);font-size:3.5em;border-radius:12%;height:1.4em!important;line-height:1.4em!important;margin-top:-.7em!important}.video-js .vjs-big-play-button:active,.video-js .vjs-big-play-button:focus,.video-js:hover .vjs-big-play-button{background-color:#0e223d}.video-js .vjs-loading-spinner{border-color:rgba(14,34,61,.84)}.video-js .vjs-control-bar2{background-color:#0e223d}.video-js .vjs-control-bar{background-color:#0e223d!important;color:#fff;font-size:14px;z-index: 2500;}.video-js .vjs-play-progress,.video-js .vjs-volume-level{background-color:rgba(14,34,61,.8)}.vjs-watermark{position:absolute;display:inline;z-index:2000}</style>
+</head>
+<body>
+<?php if($ativar_contador == "sim") { ?><div class="icone-contador"><i class="fa fa-users"></i> <strong><span id="contador_online"></span></strong></div><?php } ?>
+<?php if($ativar_compartilhamento == "sim") { ?><nav id="circle-nav-wrapper" class="circle-nav-wrapper" data-status-botao="fechado"> <div class="circle-nav-toggle"><i class="fa fa-plus" style="color: #FFFFFF"></i></div><div class="circle-nav-panel"></div><ul class="circle-nav-menu"> <a href="https://facebook.com/sharer/sharer.php?u=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-1"><i class="fa fa-facebook fa-2x"></i></li></a> <a href="https://twitter.com/share?url=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-2"><i class="fa fa-twitter fa-2x"></i></li></a> <a href="https://pinterest.com/pin/create/bookmarklet/?&url=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-3"><i class="fa fa-pinterest fa-2x"></i></li></a> <a href="tg://msg_url?url=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-4"><i class="fa fa-telegram fa-2x"></i></li></a> <a href="whatsapp://send?text=WebTV https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-5"><i class="fa fa-whatsapp fa-2x"></i></li></a> </ul> </nav><?php } ?>
+<video-js id=player_webtv class="video-js vjs-big-play-centered vjs-fill" <?php echo $autoplay; ?> <?php echo $mudo; ?> <?php echo $loop; ?> poster="<?php echo $capa_vodthumb; ?>" controls preload="auto" width="100%" height="100%">
+      <source
+      src="<?php echo $url_source; ?>"
+      type="application/x-mpegURL" width="100%" height="100%">
+    </video-js>
+    <script src="https://vjs.zencdn.net/7.8.3/video.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@videojs/http-streaming@1.10.3/dist/videojs-http-streaming.min.js"></script>
+<script>!function(){console.log("watermark: Init defaults");var e,t={file:"Owned_Stamp.png",xpos:0,ypos:0,xrepeat:0,opacity:100,clickable:!1,url:"",className:"vjs-watermark",text:!1,debug:!1},o=function(){var e,t,l,a,s;for(l in t=(e=Array.prototype.slice.call(arguments)).shift()||{},e)for(s in a=e[l])a.hasOwnProperty(s)&&("object"==typeof a[s]?t[s]=o(t[s],a[s]):t[s]=a[s]);return t};videojs.plugin("watermark",function(l){var a,s,i,r,n;l.debug&&console.log("watermark: Register init"),a=o(t,l),s=this.el(),i=this.el().getElementsByTagName("video")[0],e?e.innerHTML="":(e=document.createElement("div")).className=a.className,a.text&&(e.textContent=a.text),a.file&&(r=document.createElement("img"),e.appendChild(r),r.src=a.file),0===a.ypos&&0===a.xpos?(e.style.top="0",e.style.left="0"):0===a.ypos&&100===a.xpos?(e.style.top="0",e.style.right="0"):100===a.ypos&&100===a.xpos?(e.style.bottom="0",e.style.right="0"):100===a.ypos&&0===a.xpos?(e.style.bottom="0",e.style.left="0"):50===a.ypos&&50===a.xpos&&(a.debug&&console.log("watermark: player:"+s.width+"x"+s.height),a.debug&&console.log("watermark: video:"+i.videoWidth+"x"+i.videoHeight),a.debug&&console.log("watermark: image:"+r.width+"x"+r.height),e.style.top=this.height()/2+"px",e.style.left=this.width()/2+"px"),e.style.opacity=a.opacity,a.clickable&&""!==a.url?((n=document.createElement("a")).href=a.url,n.target="_blank",n.appendChild(e),s.appendChild(n)):s.appendChild(e),a.debug&&console.log("watermark: Register end")})}();
+      var player = videojs('player_webtv');
+      <?php if($dados_stm["watermark_posicao"]) { ?>
+      player.watermark({
+        file: 'https://<?php echo $servidor;?>:1443/watermark.php?login=<?php echo $login;?>',
+        ypos: <?php echo $ypos;?>,
+        xpos: <?php echo $xpos;?>,
+        opacity: 0.5
+      });
+      <?php } ?>
+      player.play();
+    </script>  <script type="text/javascript" charset="utf-8">
+$(".circle-nav-toggle").on("click",function(){"fechado"==$("#circle-nav-wrapper").data("status-botao")?($("#circle-nav-wrapper").css("width","250px"),$("#circle-nav-wrapper").css("height","250px"),$(".circle-nav-menu").css("width","250px"),$("#circle-nav-wrapper").css("height","250px"),$("#circle-nav-wrapper").data("status-botao","aberto")):($("#circle-nav-wrapper").css("width","50px"),$("#circle-nav-wrapper").css("height","50px"),$(".circle-nav-menu").css("width","50px"),$("#circle-nav-wrapper").css("height","50px"),$("#circle-nav-wrapper").data("status-botao","fechado"))});
+function contador(){
+    $.ajax({
+    url: "/contador/<?php echo $login; ?>",
+    success:
+      function(total_online){
+      $("#contador_online").html(total_online);
+      }
+    })
+}
+contador();
+setInterval (contador,30000);
+!function(e,o,l,c){e.fn.circleNav=function(o){var l=e.extend({},e.fn.circleNav.settings,o);return this.each(function(){var o=e(this),c=e(".circle-nav-toggle"),a=e(".circle-nav-panel"),n=e(".circle-nav-menu");l.hasOverlay&&0==e(".circle-nav-overlay").length&&(e("body").append("<div class='circle-nav-overlay'></div>"),e(".circle-nav-overlay").css({top:"0",right:"0",bottom:"0",left:"0",position:"fixed","background-color":l.overlayColor,opacity:l.overlayOpacity,"z-index":"-1",display:"none"})),e(".circle-nav-toggle, .circle-nav-overlay").on("click",function(){o.stop().toggleClass("circle-nav-open"),c.stop().toggleClass("circle-nav-open"),a.stop().toggleClass("circle-nav-open"),n.stop().toggleClass("circle-nav-open"),e(".circle-nav-overlay").fadeToggle(),e("body").css("overflow")?e("body, html").css("overflow",""):e("body, html").css("overflow","hidden")})})},e.fn.circleNav.settings={hasOverlay:!0,overlayColor:"#fff",overlayOpacity:".7"}}(jQuery,window,document);
+$(function(){$("#circle-nav-wrapper").circleNav()});
+</script>
+</body>
+</html>
+<?php } elseif($player == 2) { ?>
+<!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <title>Player</title>
+      <meta name=apple-touch-fullscreen content=yes>
+<meta name=apple-mobile-web-app-capable content=yes>
+<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="//cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="//cdn.jsdelivr.net/gh/clappr/clappr-level-selector-plugin@latest/dist/level-selector.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <title>Player</title>
+<style>*{margin:0;}html,body{height:100%; background-color:#000000;overflow: hidden!important;}.icone-contador{position:absolute;left:0;top:0;background:rgba(255,0,0, 1.0); min-width: 50px;height: 20px;padding-left: 5px;padding-bottom: 10px; margin: 10px; border-radius: 3px;color: #FFFFFF;font-size: 14px;text-align: center;z-index: 10000;}.overlay{z-index:1;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAMAAABFaP0WAAAABlBMVEX///8AAABVwtN+AAAAAXRSTlMAQObYZgAAAAxJREFUCNdjYGQAAgAACwAC91XSmQAAAABJRU5ErkJggg==);background-repeat:repeat}ul{margin:0;padding:0}ul li{list-style-type:none}.circle-nav-wrapper{position:absolute;z-index:9999;right:0;top:0;width:50px;height:50pxoverflow:hidden}.circle-nav-wrapper .circle-nav-toggle{position:absolute;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;border-radius:50%;z-index:999999;width:30px;height:30px;border:2px solid #FFFFFF;transition:-webkit-transform .2s cubic-bezier(0,1.16,1,1);transition:transform .2s cubic-bezier(0,1.16,1,1);transition:transform .2s cubic-bezier(0,1.16,1,1),-webkit-transform .2s cubic-bezier(0,1.16,1,1);right:10px;top:10px}.circle-nav-wrapper .circle-nav-toggle i.material-icons{color:#FFFFFF}.circle-nav-wrapper .circle-nav-toggle:focus,.circle-nav-wrapper .circle-nav-toggle:hover{opacity:.8;cursor:pointer}.circle-nav-wrapper .circle-nav-toggle.circle-nav-open{border:2px solid #fff;-webkit-transform:rotate(135deg);transform:rotate(135deg)}.circle-nav-wrapper .circle-nav-toggle.circle-nav-open i.material-icons{color:#fff}.circle-nav-wrapper .circle-nav-panel{background:#ffc371;background:linear-gradient(to right,#ff5f6d,#ffc371);width:0;height:0;border-radius:50%;-webkit-transform:translate(-50%,-52.5%);transform:translate(-50%,-52.5%);transition:width .2s cubic-bezier(0,1.16,1,1),height .2s cubic-bezier(0,1.16,1,1);margin-left:261px}.circle-nav-wrapper .circle-nav-panel.circle-nav-open{width:500px;height:500px;opacity:.7;box-shadow:-5px 6px 0 6px rgba(255,95,109,.33)}.circle-nav-wrapper .circle-nav-menu{width:250px;height:250px}.circle-nav-wrapper .circle-nav-menu .circle-nav-item{position:absolute;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#fff;border-radius:50%;width:15px;height:15px;visibility:hidden;transition:bottom .5s cubic-bezier(0,1.16,1,1),left .5s cubic-bezier(0,1.16,1,1),width .3s cubic-bezier(0,1.16,1,1),height .3s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu .circle-nav-item-1,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-2,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-3,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-4,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-5{left:250px;bottom:250px}.circle-nav-wrapper .circle-nav-menu .circle-nav-item i{color:#ff5f6d;font-size:.6em;transition:font .3s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu .circle-nav-item i{display:block}.circle-nav-wrapper .circle-nav-menu .circle-nav-item span{display:none}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item{width:40px;height:40px;visibility:visible;transition:bottom .3s cubic-bezier(0,1.16,1,1),left .3s cubic-bezier(0,1.16,1,1),width .2s cubic-bezier(0,1.16,1,1),height .2s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item:focus,.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item:hover{cursor:pointer;opacity:.8}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item i{font-size:1.4em;transition:font .1s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-1{bottom:200px;left:30px;transition-delay:.2s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-2{bottom:140px;left:50px;transition-delay:.4s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-3{bottom:90px;left:85px;transition-delay:.6s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-4{bottom:52px;left:132px;transition-delay:.8s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-5{bottom:28px;left:187px;transition-delay:1s}.clappr-watermark[data-watermark-bottom-right] {bottom: 7px;right: 5px;}.clappr-watermark[data-watermark-top-left] {bottom: 7px;right: 5px;}.clappr-watermark[data-watermark-top-right] {bottom: 7px;right: 5px;}.clappr-watermark[data-watermark-bottom-left] {bottom: 7px;right: 5px;}</style>
+</head>
+<body>
+<?php if($ativar_contador == "sim") { ?><div class="icone-contador"><i class="fa fa-users"></i> <strong><span id="contador_online"></span></strong></div><?php } ?>
+<?php if($ativar_compartilhamento == "sim") { ?><nav id="circle-nav-wrapper" class="circle-nav-wrapper" data-status-botao="fechado"> <div class="circle-nav-toggle"><i class="fa fa-plus" style="color: #FFFFFF"></i></div><div class="circle-nav-panel"></div><ul class="circle-nav-menu"> <a href="https://facebook.com/sharer/sharer.php?u=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-1"><i class="fa fa-facebook fa-2x"></i></li></a> <a href="https://twitter.com/share?url=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-2"><i class="fa fa-twitter fa-2x"></i></li></a> <a href="https://pinterest.com/pin/create/bookmarklet/?&url=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-3"><i class="fa fa-pinterest fa-2x"></i></li></a> <a href="tg://msg_url?url=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-4"><i class="fa fa-telegram fa-2x"></i></li></a> <a href="whatsapp://send?text=WebTV https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-5"><i class="fa fa-whatsapp fa-2x"></i></li></a> </ul> </nav><?php } ?>
+<div  class="container-fluid">
+    <div class="row">
+      <?php if($aspectratio == "16:9") { ?>
+        <div class="embed-responsive embed-responsive-16by9">
+        <?php } ?>
+      <?php if($aspectratio == "4:3") { ?>
+        <div class="embed-responsive embed-responsive-4by3">
+        <?php } ?>
+        <div id="player_webtv" class="embed-responsive-item"></div>
+        </div>
+</div>
+</div>
+<script type="text/javascript" charset="utf-8">
+$(".circle-nav-toggle").on("click",function(){"fechado"==$("#circle-nav-wrapper").data("status-botao")?($("#circle-nav-wrapper").css("width","250px"),$("#circle-nav-wrapper").css("height","250px"),$(".circle-nav-menu").css("width","250px"),$("#circle-nav-wrapper").css("height","250px"),$("#circle-nav-wrapper").data("status-botao","aberto")):($("#circle-nav-wrapper").css("width","50px"),$("#circle-nav-wrapper").css("height","50px"),$(".circle-nav-menu").css("width","50px"),$("#circle-nav-wrapper").css("height","50px"),$("#circle-nav-wrapper").data("status-botao","fechado"))});
+function contador(){
+    $.ajax({
+    url: "/contador/<?php echo $login; ?>",
+    success:
+      function(total_online){
+      $("#contador_online").html(total_online);
+      }
+    })
+}
+
+  window.onload = function() {
+    var altura = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+  var player = new Clappr.Player({
+          <?php if($dados_stm["transcoder_instalado"] == "sim") { ?>
+            plugins: [LevelSelector],
+            levelSelectorConfig: {
+              labelCallback: function(playbackLevel, customLabel) {
+          return playbackLevel.level.height+'p'; // High 720p
+        }
+      },
+    <?php } ?>
+    source: '<?php echo $url_source; ?>',
+    parentId: '#player_webtv',
+  width: '100%',
+    height: altura+'px',
+    mute: <?php echo query_string('4'); ?>,
+    hideMediaControl: true,
+    poster: '<?php echo $capa_vodthumb; ?>',
+  loop: '<?php echo query_string('9'); ?> ',
+  <?php if($dados_stm["watermark_posicao"]) { ?>
+    position: '<?php echo $clappr_watermark; ?> ',
+    watermark: 'https://<?php echo $servidor;?>:1443/watermark.php?login=<?php echo $login;?>',
+  <?php } ?>
+  autoPlay: <?php echo query_string('3'); ?>  });
+  contador();
+  setInterval (contador,30000);
+}
+!function(e,o,l,c){e.fn.circleNav=function(o){var l=e.extend({},e.fn.circleNav.settings,o);return this.each(function(){var o=e(this),c=e(".circle-nav-toggle"),a=e(".circle-nav-panel"),n=e(".circle-nav-menu");l.hasOverlay&&0==e(".circle-nav-overlay").length&&(e("body").append("<div class='circle-nav-overlay'></div>"),e(".circle-nav-overlay").css({top:"0",right:"0",bottom:"0",left:"0",position:"fixed","background-color":l.overlayColor,opacity:l.overlayOpacity,"z-index":"-1",display:"none"})),e(".circle-nav-toggle, .circle-nav-overlay").on("click",function(){o.stop().toggleClass("circle-nav-open"),c.stop().toggleClass("circle-nav-open"),a.stop().toggleClass("circle-nav-open"),n.stop().toggleClass("circle-nav-open"),e(".circle-nav-overlay").fadeToggle(),e("body").css("overflow")?e("body, html").css("overflow",""):e("body, html").css("overflow","hidden")})})},e.fn.circleNav.settings={hasOverlay:!0,overlayColor:"#fff",overlayOpacity:".7"}}(jQuery,window,document);
+$(function(){$("#circle-nav-wrapper").circleNav()});
+  </script>
+</body>
+</html>
+<?php } else { ?>
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+    <head>
+      <title>Player</title>
+      <meta name=apple-touch-fullscreen content=yes>
+<meta name=apple-mobile-web-app-capable content=yes>
+<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript" charset="utf-8" src="//cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+      <script src="https://content.jwplatform.com/libraries/5PLwmcI5.js"></script>
+      <style>body{margin:0;overflow:hidden;background:#000;overflow-x: hidden!important;}.jwplayer{position:inherit!important;}.icone-contador{position:absolute;left:0;top:0;background:rgba(255,0,0, 1.0); min-width: 50px;height: 20px;padding-left: 5px;padding-bottom: 10px; margin: 10px; border-radius: 3px;color: #FFFFFF;font-size: 14px;text-align: center;z-index: 10000;}.overlay{z-index:1;position:absolute;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAMAAABFaP0WAAAABlBMVEX///8AAABVwtN+AAAAAXRSTlMAQObYZgAAAAxJREFUCNdjYGQAAgAACwAC91XSmQAAAABJRU5ErkJggg==);background-repeat:repeat}ul{margin:0;padding:0}ul li{list-style-type:none}.circle-nav-wrapper{position:absolute;z-index:9999;right:0;top:0;width:50px;height:50pxoverflow:hidden}.circle-nav-wrapper .circle-nav-toggle{position:absolute;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;border-radius:50%;z-index:999999;width:30px;height:30px;border:2px solid #FFFFFF;transition:-webkit-transform .2s cubic-bezier(0,1.16,1,1);transition:transform .2s cubic-bezier(0,1.16,1,1);transition:transform .2s cubic-bezier(0,1.16,1,1),-webkit-transform .2s cubic-bezier(0,1.16,1,1);right:10px;top:10px}.circle-nav-wrapper .circle-nav-toggle i.material-icons{color:#FFFFFF}.circle-nav-wrapper .circle-nav-toggle:focus,.circle-nav-wrapper .circle-nav-toggle:hover{opacity:.8;cursor:pointer}.circle-nav-wrapper .circle-nav-toggle.circle-nav-open{border:2px solid #fff;-webkit-transform:rotate(135deg);transform:rotate(135deg)}.circle-nav-wrapper .circle-nav-toggle.circle-nav-open i.material-icons{color:#fff}.circle-nav-wrapper .circle-nav-panel{background:#ffc371;background:linear-gradient(to right,#ff5f6d,#ffc371);width:0;height:0;border-radius:50%;-webkit-transform:translate(-50%,-52.5%);transform:translate(-50%,-52.5%);transition:width .2s cubic-bezier(0,1.16,1,1),height .2s cubic-bezier(0,1.16,1,1);margin-left:261px}.circle-nav-wrapper .circle-nav-panel.circle-nav-open{width:500px;height:500px;opacity:.7;box-shadow:-5px 6px 0 6px rgba(255,95,109,.33)}.circle-nav-wrapper .circle-nav-menu{width:250px;height:250px}.circle-nav-wrapper .circle-nav-menu .circle-nav-item{position:absolute;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#fff;border-radius:50%;width:15px;height:15px;visibility:hidden;transition:bottom .5s cubic-bezier(0,1.16,1,1),left .5s cubic-bezier(0,1.16,1,1),width .3s cubic-bezier(0,1.16,1,1),height .3s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu .circle-nav-item-1,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-2,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-3,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-4,.circle-nav-wrapper .circle-nav-menu .circle-nav-item-5{left:250px;bottom:250px}.circle-nav-wrapper .circle-nav-menu .circle-nav-item i{color:#ff5f6d;font-size:.6em;transition:font .3s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu .circle-nav-item i{display:block}.circle-nav-wrapper .circle-nav-menu .circle-nav-item span{display:none}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item{width:40px;height:40px;visibility:visible;transition:bottom .3s cubic-bezier(0,1.16,1,1),left .3s cubic-bezier(0,1.16,1,1),width .2s cubic-bezier(0,1.16,1,1),height .2s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item:focus,.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item:hover{cursor:pointer;opacity:.8}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item i{font-size:1.4em;transition:font .1s cubic-bezier(0,1.16,1,1)}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-1{bottom:200px;left:30px;transition-delay:.2s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-2{bottom:140px;left:50px;transition-delay:.4s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-3{bottom:90px;left:85px;transition-delay:.6s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-4{bottom:52px;left:132px;transition-delay:.8s}.circle-nav-wrapper .circle-nav-menu.circle-nav-open .circle-nav-item.circle-nav-item-5{bottom:28px;left:187px;transition-delay:1s}</style>
+    </head>
+    <body>
+<?php if($ativar_contador == "sim") { ?><div class="icone-contador"><i class="fa fa-users"></i> <strong><span id="contador_online"></span></strong></div><?php } ?>
+<nav id="circle-nav-wrapper" class="circle-nav-wrapper" data-status-botao="fechado"> <div class="circle-nav-toggle"><i class="fa fa-plus" style="color: #FFFFFF"></i></div><div class="circle-nav-panel"></div><ul class="circle-nav-menu"> <a href="https://facebook.com/sharer/sharer.php?u=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-1"><i class="fa fa-facebook fa-2x"></i></li></a> <a href="https://twitter.com/share?url=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-2"><i class="fa fa-twitter fa-2x"></i></li></a> <a href="https://pinterest.com/pin/create/bookmarklet/?&url=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-3"><i class="fa fa-pinterest fa-2x"></i></li></a> <a href="tg://msg_url?url=https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-4"><i class="fa fa-telegram fa-2x"></i></li></a> <a href="whatsapp://send?text=WebTV https://<?php echo $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; ?>" target="_blank"> <li class="circle-nav-item circle-nav-item-5"><i class="fa fa-whatsapp fa-2x"></i></li></a> </ul> </nav>
+      <div id="video_main"></div>
+      <script>
+        var player = jwplayer("video_main");
+        player.setup({
+          aspectratio: '<?php echo $aspectratio; ?>',
+          width: '100%',
+          height: '100%',
+          displaytitle: false,
+          displaydescription: false,
+          mute: <?php echo query_string('4'); ?>,
+          autostart: <?php echo query_string('3'); ?>,
+          repeat: '<?php echo query_string('9'); ?> ',
+          image: '<?php echo $capa_vodthumb; ?>',
+          sources: [{"file":"<?php echo $url_source; ?>"}]
+        });
+$(".circle-nav-toggle").on("click",function(){"fechado"==$("#circle-nav-wrapper").data("status-botao")?($("#circle-nav-wrapper").css("width","250px"),$("#circle-nav-wrapper").css("height","250px"),$(".circle-nav-menu").css("width","250px"),$("#circle-nav-wrapper").css("height","250px"),$("#circle-nav-wrapper").data("status-botao","aberto")):($("#circle-nav-wrapper").css("width","50px"),$("#circle-nav-wrapper").css("height","50px"),$(".circle-nav-menu").css("width","50px"),$("#circle-nav-wrapper").css("height","50px"),$("#circle-nav-wrapper").data("status-botao","fechado"))});
+function contador(){
+    $.ajax({
+    url: "/contador/<?php echo $login; ?>",
+    success:
+      function(total_online){
+      $("#contador_online").html(total_online);
+      }
+    })
+}
+contador();
+setInterval (contador,30000);
+!function(e,o,l,c){e.fn.circleNav=function(o){var l=e.extend({},e.fn.circleNav.settings,o);return this.each(function(){var o=e(this),c=e(".circle-nav-toggle"),a=e(".circle-nav-panel"),n=e(".circle-nav-menu");l.hasOverlay&&0==e(".circle-nav-overlay").length&&(e("body").append("<div class='circle-nav-overlay'></div>"),e(".circle-nav-overlay").css({top:"0",right:"0",bottom:"0",left:"0",position:"fixed","background-color":l.overlayColor,opacity:l.overlayOpacity,"z-index":"-1",display:"none"})),e(".circle-nav-toggle, .circle-nav-overlay").on("click",function(){o.stop().toggleClass("circle-nav-open"),c.stop().toggleClass("circle-nav-open"),a.stop().toggleClass("circle-nav-open"),n.stop().toggleClass("circle-nav-open"),e(".circle-nav-overlay").fadeToggle(),e("body").css("overflow")?e("body, html").css("overflow",""):e("body, html").css("overflow","hidden")})})},e.fn.circleNav.settings={hasOverlay:!0,overlayColor:"#fff",overlayOpacity:".7"}}(jQuery,window,document);
+$(function(){$("#circle-nav-wrapper").circleNav()});
+</script>
+    </body>
+    </html>
+<?php } ?>

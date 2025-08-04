@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil title="tvprecabura">
+<head></head>
+<body>
+<stream name="tvprecabura"></stream>
+
+<playlist name="001_programacao24h" playOnStream="tvprecabura" repeat="true" scheduled="2019-05-01 13:02:34">
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_1_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_01_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT LAG PRECABURA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES OUTROS/ISRAEL NOVAIS TA RUIM MAS TA BOM_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/DI SOUSA A CULPA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES OUTROS/LUAN SANTANA E MC KEKEL VINGANCA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_2_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_02_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/01 Fergie Big Girls Don_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/04 Ellie Gouding How Long Will I Love You - fron the About Tim converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/05 Ed Sheeran TOhinking Out Lourd converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_02_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_3_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/BRENDA JOIA QUANDO O NAM BRIGA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/JUNIOR PONCE  MESMO QUE SEJA MENTIRA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/CARMEM JULIA NEM DE GRACA EU QUERO HD_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_01_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_2_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/JUNIOR PONCE E PATRICIA LEITA BARRIGUDINHA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/OS FILHOS DE JOSE E ROMERO CANTOR BAR DO PRIMO_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES OUTROS/ISRAEL NOVAIS TA RUIM MAS TA BOM_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_1_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_01_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/02 Rihanna-California King Bed converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/03 Rihanna-Umbrella Orange Version FT JEY Z converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/06 Alok Love Is A Temple Ieat IRO_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_01_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_3_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:DOCUMENTARIOS/DOC ACARAU RIO DAS GARCAS_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_3_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_02_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/JUNIOR PONCE E PATRICIA LEITA BARRIGUDINHA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/11 Ellie Gouding Love Me Like You Do_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/DI SOUSA A CULPA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/10 Ed Sheeran Photograph_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/BRENDA JOIA QUANDO O NAM BRIGA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/07 Ariana Grande Dagerous Woman_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/CARMEM JULIA NEM DE GRACA EU QUERO HD_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/09 Bebe Rexha_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/JUNIOR PONCE  MESMO QUE SEJA MENTIRA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/02 Rihanna-California King Bed converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/OS FILHOS DE JOSE E ROMERO CANTOR BAR DO PRIMO_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/06 Alok Love Is A Temple Ieat IRO_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_01_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_02_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:INSTITUCIONAIS CE/CHA_VEM_PRA_FORTALEZA_INST_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT CEU BRANCO_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:DOCUMENTARIOS/DOC CHARQUEADAS_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_2_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_01_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/BRENDA JOIA QUANDO O NAM BRIGA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/JUNIOR PONCE  MESMO QUE SEJA MENTIRA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/CARMEM JULIA NEM DE GRACA EU QUERO HD_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/DI SOUSA A CULPA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/OS FILHOS DE JOSE E ROMERO CANTOR BAR DO PRIMO_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/JUNIOR PONCE E PATRICIA LEITA BARRIGUDINHA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_01_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_01_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/06 Alok Love Is A Temple Ieat IRO_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/10 Ed Sheeran Photograph_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/11 Ellie Gouding Love Me Like You Do_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/04 Ellie Gouding How Long Will I Love You - fron the About Tim converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/06 Alok Love Is A Temple Ieat IRO_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES INTERNACIONAIS COM LOGO/03 Rihanna-Umbrella Orange Version FT JEY Z converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_3_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_02_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT LAG PRECABURA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:INSTITUCIONAIS CE/CHA_VEM_PRA_FORTALEZA_INST_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:DOCUMENTARIOS/DOC AMAZONIA CRISTAIS_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT LAG PRECABURA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:INSTITUCIONAIS CE/CHA_VEM_PRA_FORTALEZA_INST_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT CEU BRANCO_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/DEDIM GOUVEIA PISCA PISCA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/BERI SHOW MANCAO DO ZE_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/ITALO WALAS REI DA BALADA_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CLIPES DO CEARA COM LOGO/Edhy NET_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA_AEDS_01_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:CHA GOV E PREF/CHA-GOV_CINTO_2_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA/DIVULGACAO MASTERCAM 13.04.2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:VHT TV PRECABURA 2019/VHT TV PORTO DAS DUNAS 2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:INSTITUCIONAIS CE/CHA_VEM_PRA_FORTALEZA_INST_converted.mp4" start="0"></video>
+</playlist>
+
+</body>
+</smil>

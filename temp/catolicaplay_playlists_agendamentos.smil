@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil title="catolicaplay">
+<head></head>
+<body>
+<stream name="catolicaplay"></stream>
+
+<playlist name="001_segunda" playOnStream="catolicaplay" repeat="true" scheduled="2019-03-22 07:35:50">
+<video length="-1" src="mp4:youtube/Filme_So_Francisco_de_Assis_dublado.mp4" start="0"></video>
+<video length="-1" src="mp4:Padre Jonas/ARRANCADOS_DAS_TREVAS_Monsenhor_Jonas_Abib.mp4" start="0"></video>
+</playlist>
+
+</body>
+</smil>

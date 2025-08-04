@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WEBTV_NOME</string>
+    <string name="url_player">URL_PLAYER</string>
+    <string name="shareapp_msg">MSG_SHARE</string>
+</resources>

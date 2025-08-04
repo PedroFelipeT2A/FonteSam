@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil title="gessitonb">
+<head></head>
+<body>
+<stream name="gessitonb"></stream>
+
+<playlist name="001_tv" playOnStream="gessitonb" repeat="true" scheduled="2019-03-06 13:51:42">
+<video length="-1" src="mp4:tv/0.mp4" start="0"></video>
+<video length="-1" src="mp4:tv/1.mp4" start="0"></video>
+</playlist>
+
+</body>
+</smil>

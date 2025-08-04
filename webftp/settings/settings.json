@@ -1,0 +1,8 @@
+{
+    "language": "pt_br",
+    "showDotFiles": false,
+    "hideProUpgradeMessages": true,
+    "connectionRestrictions": {
+        "types": ["ftp"]
+    }
+}

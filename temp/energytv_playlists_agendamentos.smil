@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil title="energytv">
+<head></head>
+<body>
+<stream name="energytv"></stream>
+
+<playlist name="001_mix" playOnStream="energytv" repeat="true" scheduled="2019-02-09 16:01:00">
+<video length="-1" src="mp4:variados/Abraham Mateo - A camara Lenta.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Alvaro Soler - El Mismo Sol.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Anitta ft J Balvin - Downtown.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Asesina Remix - Brytiago Darell Daddy Yankee Ozuna Anuel AA.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Becky G - Mayores ft Bad Bunny.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Carlos Baute - Colgando en tus manos.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Carlos Vives Shakira - La Bicicleta.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Chino y Nacho - Andas En Mi Cabeza ft Daddy Yankee.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/DJ Snake - Taki Taki ft Selena Gomez Ozuna Cardi B.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Daddy Yankee Dura.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Daddy Yankee RedOne French Montana ft Dinah Jane Boom Boom.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Daddy Yankee ft Anuel AA - Adictiva.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Danny Ocean - Dembow.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Dvicio - Paraiso.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Enrique Iglesias - DUELE EL CORAZON ft Wisin.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Enrique Iglesias - El Perdedor ft Marco Antonio Solis.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Esperandote - MTZ Manuel Turizo.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Fabio Zambrana - Cumbia Lenta ft Iciar Diaz.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Farruko - Chillax ft Ky-Mani Marley.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Gente de Zona - Traidora  ft Marc Anthony.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/J Balvin Jeon Anitta - Machika.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/J Balvin Willy William - Mi Gente.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Jennifer Lopez - Amor Amor Amor  ft Wisin.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Luis Fonsi Demi Lovato - echame La Culpa.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Madonna - La Isla Bonita.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Melendi Carlos Vives - El Arrepentido.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Morat - Cuando Nadie Ve.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Morat Juanes - Besos En Guerra.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Nacho Yandel Bad Bunny - Bailame.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Nicky Jam x J Balvin - X  Afro Bros y Jeon.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Ozuna x Romeo Santos - El Farsante.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Piso 21 - Dejala Que Vuelva feat Manuel Turizo.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Rasel - Me pones tierno feat Carlos Baute.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Romeo Santos Daddy Yankee Nicky Jam - Bella y Sensual.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Sebastian Yatra - Traicionera.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Shakira - Clandestino  ft Maluma.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Shakira - Me Enamore.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Shakira - Perro Fiel  ft Nicky Jam.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Silvestre Dangond Nicky Jam - Casate Conmigo.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Thalia - Desde Esa Noche  ft Maluma.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Thalia Natti Natasha - No Me Acuerdo.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Una Lady Como Tu - Manuel Turizo.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Wisin - Escapate Conmigo ft Ozuna.mp4" start="0"></video>
+<video length="-1" src="mp4:variados/Yandel - Nunca Me Olvides.mp4" start="0"></video>
+</playlist>
+
+</body>
+</smil>

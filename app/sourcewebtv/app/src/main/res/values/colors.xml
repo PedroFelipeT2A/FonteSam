@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#e12d82</color>
+    <color name="colorPrimaryDark">#ffb817</color>
+    <color name="colorAccent">#ffb817</color>
+    <color name="white">#ffffff</color>
+    <color name="white_trasparent">#F2ffffff</color>
+    <color name="black">#323232</color>
+    <color name="devby_bg">#E7E7E7</color>
+    <color name="transparent">#00000000</color>
+    
+    <color name="toolbar_start">#e12d82</color>
+    <color name="toolbar_end">#ffb817</color>
+
+    <color name="btn_1_bg">#E12E82</color>
+    <color name="btn_2_bg">#FFB717</color>
+    <color name="btn_1_border">#F6C0D8</color>
+    <color name="btn_2_border">#FFE9B8</color>
+
+    <color name="app_bg">COR_APP</color>
+    <color name="textView_select_dialog">#FFFFFF</color>
+    <color name="drawar_item">#626262</color>
+    <color name="drawar_item_selected">#e12d82</color>
+    <color name="navigation_drawar">#FFFFFF</color>
+    <color name="textView_description_home_fragment">#000000</color>
+    <color name="dialog">#E6000000</color>
+
+    <color name="about_title">#404040</color>
+    <color name="about_text">#8D8D8D</color>
+</resources>

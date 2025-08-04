@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil title="casmadigital">
+<head></head>
+<body>
+<stream name="casmadigital"></stream>
+
+<playlist name="001_videosmix" playOnStream="casmadigital" repeat="true" scheduled="2019-03-06 13:50:48">
+<video length="-1" src="mp4:WAY_MAKER_-_Aqui_estas_-__ESPAOL_CON_letra.mp4" start="0"></video>
+<video length="-1" src="mp4:Ricardo_Montaner_feat_Evaluna_Montaner_La_Gloria_de_Dios.mp4" start="0"></video>
+<video length="-1" src="mp4:T_ests_aqu_-_Jess_Adrin_Romero_feat_Marcela_Gndara_-_Video_Oficial.mp4" start="0"></video>
+<video length="-1" src="mp4:Como_en_el_Cielo_-_Elevation_Worship__Here_As_In_Heaven_LETRA_ESPAOL.mp4" start="0"></video>
+<video length="-1" src="mp4:Christine_DClario_Ft_Julio_Melgar_e_Bethel_Music_-_Ya_No_Soy_Esclavo.mp4" start="0"></video>
+</playlist>
+
+</body>
+</smil>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil title="copacabanatv">
+<head></head>
+<body>
+<stream name="copacabanatv"></stream>
+
+<playlist name="001_playlist2" playOnStream="copacabanatv" repeat="true" scheduled="2019-10-08 13:24:51">
+<video length="-1" src="mp4:Videos prueba/Grassy_field_with_flowers_and_trees_HD_-_Flores_y_arboles_en_el_campo_HD_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:Videos prueba/Lone_tree_growing_out_of_mountainside_HD_-_Arbol_crece_fuera_de_la_ladera_de_la_montana_HD_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:Videos prueba/Sunset_through_some_flowers_HD_-_Puesta_de_sol_a_traves_de_algunas_flores_HD_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:Videos prueba/Dolly_through_pink_blossoms_HD_-_Flor_de_cerezo_HD_converted.mp4" start="0"></video>
+</playlist>
+
+</body>
+</smil>

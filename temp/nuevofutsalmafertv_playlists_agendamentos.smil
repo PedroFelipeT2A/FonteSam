@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil title="nuevofutsalmafertv">
+<head></head>
+<body>
+<stream name="nuevofutsalmafertv"></stream>
+
+<playlist name="001_playlistpartidos" playOnStream="nuevofutsalmafertv" repeat="true" scheduled="2019-09-04 10:16:20">
+<video length="-1" src="mp4:PARTIDOS/F.ALIANCA_MATARO_VS_ESCOLA_PIA_SABADELL__2B_NACIONAL__11-5-2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/PLAY-OFF_ASCENSO_A_2a_DIVISION__2019_-_C.MOSTOLES_VS_CCR_CASTELLDEFELS__IDA__converted.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/PLAY-OFF_ASCENSO_A_2a_DIVISION__2019_-_CCR_CASTELLDEFELS_-_C._MOSTOLES__VUELTA__converted.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/CAMP.ESPANA CADETE 2018 - 1a SEMIFINAL - MOPRISALA TOLEDO VS OSASUNA MAGNA.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/CAMP.ESPANA CADETE 2018 - 2a SEMIFINAL - FCBARCELONA LASSA VS INTER MOVISTAR.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/FINAL_C.ESPANA_CADETE_2018_-_INTER_MOVISTAR_VS_MOPRISALA_TOLEDO_converted_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/PENYA_ESPLUGUES_VS_JIMBE_ROLDAN__1_NACIONAL_FEMENINA__2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/XOTA_MAGNA_GURPEA_-_PIRINEOS_SC__III_TORNEO_NACIONAL_CADETE_2017__converted_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/IV_TNCADETE_2018_-_1700_FINAL__MOPRISALA_TOLEDO_VS_LES_CORTS_UBAE__9-9-2018_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/FINAL_FEMENINA_V_TORNEO_CADETE___CIUTAT_DESPLUGUES___converted.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/FINAL_MASCULINA_V_TORNEO_CADETE___CIUTAT_DESPLUGUES___2019_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:PARTIDOS/FCBARCELONA_LASSA_VS_MANRESA_FS__CADETE_D.HONOR__2018-2019_-30-3-19_converted.mp4" start="0"></video>
+</playlist>
+
+</body>
+</smil>

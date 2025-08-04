@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<smil title="manueltv">
+<head></head>
+<body>
+<stream name="manueltv"></stream>
+
+<playlist name="001_programacion" playOnStream="manueltv" repeat="true" scheduled="2019-08-22 17:06:50">
+<video length="-1" src="mp4:programacion/ACTUALIDAD.MP4_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:programacion/FCBARCELONA LASSA VS MANRESA HONOR_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:programacion/7.mp4" start="0"></video>
+<video length="-1" src="mp4:programacion/27.mp4" start="0"></video>
+<video length="-1" src="mp4:programacion/28.mp4" start="0"></video>
+<video length="-1" src="mp4:programacion/ACTUALIDAD.MP4_converted.mp4" start="0"></video>
+<video length="-1" src="mp4:programacion/30.mp4" start="0"></video>
+</playlist>
+
+</body>
+</smil>
